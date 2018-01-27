@@ -21,13 +21,13 @@ html
             p You can install the Slack app on your phone or on your computer and stay connected as often as you want!
 
             form(method="POST", action="/invite")#join-form.form
+              if !!recaptchaSiteKey
+                div(class="g-recaptcha", data-sitekey="#{recaptchaSiteKey}")
               input(type="email", name="email", autofocus, placeholder="#{__('ENTER_EMAIL')}")#slack-email.field
               if tokenRequired
                 input(type="text", name="token", placeholder="#{__('ENTER_TOKEN')}")#slack-token.field
               input(type="submit", value="Join").submit
 
-              if !!recaptchaSiteKey
-                div(class="g-recaptcha", data-sitekey="#{recaptchaSiteKey}")
         .content
           .information
             h3.pad_top NOTIFICATION SETTINGS

@@ -15,24 +15,23 @@ html
           h2 #{__('HEADER', community)}
         .content
           .information
+            h3.pad_top CHAT IT UP
+            p FPV and FPV racing and building DIY quadcopters is insanely daunting when you get going. And, beyond that, when you DO have some things figured out, you start to have a lot of problems and need a lot of quick and easy feeback. Because of all this, we've created a Slack chatroom for aspiring FPV pilots to come to get quick and immediate feedback and help on their builds, post videos of themselves flying, and make shameless plugs for their own content. Not only is it a support room for trouble that you’re having, but it’s also a great community of friends and people that share a common interest: FPV.
+            p We are using Slack because it’s simply the best tool out there for chatting.
+            p You can install the Slack app on your phone or on your computer and stay connected as often as you want!
+            .content
+              .information
+                h3.pad_top NOTIFICATION SETTINGS
+                iframe#gfycat(style='-webkit-backface-visibility: hidden; -webkit-transform: scale(1);', src='https://gfycat.com/ifr/BlindOddballBonobo', width='100%', height='275', frameborder='0', scrolling='no')
+                p The default settings for notifications on Slack are too.. needy. You limit notifications to “Only direct messages &amp; highlight words". Which you can do by doing the following:
+                p.pad_bottom
+                a(href='https://gfycat.com/BlindOddballBonobo') https://gfycat.com/BlindOddballBonobo
             form(method="POST", action="/invite")#join-form.form
               input(type="email", name="email", autofocus, placeholder="#{__('ENTER_EMAIL')}")#slack-email.field
               if tokenRequired
                 input(type="text", name="token", placeholder="#{__('ENTER_TOKEN')}")#slack-token.field
               input(type="submit", value="Join").submit
-                .content
-                  .information
-                    h3.pad_top CHAT IT UP
-                    p FPV and FPV racing and building DIY quadcopters is insanely daunting when you get going. And, beyond that, when you DO have some things figured out, you start to have a lot of problems and need a lot of quick and easy feeback. Because of all this, we've created a Slack chatroom for aspiring FPV pilots to come to get quick and immediate feedback and help on their builds, post videos of themselves flying, and make shameless plugs for their own content. Not only is it a support room for trouble that you’re having, but it’s also a great community of friends and people that share a common interest: FPV.
-                    p We are using Slack because it’s simply the best tool out there for chatting.
-                    p You can install the Slack app on your phone or on your computer and stay connected as often as you want!
-                    .content
-                      .information
-                        h3.pad_top NOTIFICATION SETTINGS
-                        iframe#gfycat(style='-webkit-backface-visibility: hidden; -webkit-transform: scale(1);', src='https://gfycat.com/ifr/BlindOddballBonobo', width='100%', height='275', frameborder='0', scrolling='no')
-                        p The default settings for notifications on Slack are too.. needy. You limit notifications to “Only direct messages &amp; highlight words". Which you can do by doing the following:
-                        p.pad_bottom
-                          a(href='https://gfycat.com/BlindOddballBonobo') https://gfycat.com/BlindOddballBonobo
+
               if !!recaptchaSiteKey
                 div(class="g-recaptcha", data-sitekey="#{recaptchaSiteKey}")
     if !!recaptchaSiteKey

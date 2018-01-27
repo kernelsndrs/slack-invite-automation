@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-
+const MailChecker = require('mailchecker');
 const config = require('../config');
 const { badge } = require('../lib/badge');
 
@@ -14,6 +14,18 @@ router.get('/', function(req, res) {
 
 router.post('/invite', function(req, res) {
   if (req.body.email && (!config.inviteToken || (!!config.inviteToken && req.body.token === config.inviteToken))) {
+    function checkSpamEmail() {
+        if(!MailChecker.isValid(req.body.email)){
+            error = 'Har. Har. Har.';
+            res.render('result', {
+                community: config.community,
+                message: 'Failed! ' + error,
+                isFailed: true
+            });
+        }else {
+          doInvite()
+        }
+    }
     function doInvite() {
       request.post({
           url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
@@ -70,7 +82,7 @@ router.post('/invite', function(req, res) {
         }
 
         if (body.success) {
-          doInvite();
+          checkSpamEmail();
         } else {
           error = 'Invalid captcha.';
           res.render('result', {
@@ -81,7 +93,7 @@ router.post('/invite', function(req, res) {
         }
       });
     } else {
-      doInvite();
+      checkSpamEmail();
     }
   } else {
     const errMsg = [];
